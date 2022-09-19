@@ -1,8 +1,8 @@
 #Defining the Provider
 provider "aws" {
-  region     = "${var.region}"
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
+  region     = var.region
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 
 data "aws_ami" "linux_machine" {
@@ -27,7 +27,7 @@ data "aws_ami" "linux_machine" {
 
 #Creating web server instance in Web_sub
 resource "aws_instance" "web_server" {
-  instance_type = "${var.instance_type}"
+  instance_type = var.instance_type
   ami           = data.aws_ami.linux_machine.id
   tags = {
     Name = "web_server"
